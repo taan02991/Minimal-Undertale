@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Thu May 14 00:43:27 2020
+# Process ID: 20876
+# Current directory: C:/Users/User/Projects/XilinxProjects/Lab06/Verilog/Lab06
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent16140 C:\Users\User\Projects\XilinxProjects\Lab06\Verilog\Lab06\Lab06.xpr
+# Log file: C:/Users/User/Projects/XilinxProjects/Lab06/Verilog/Lab06/vivado.log
+# Journal file: C:/Users/User/Projects/XilinxProjects/Lab06/Verilog/Lab06\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/User/Projects/XilinxProjects/Lab06/Verilog/Lab06/Lab06.xpr
+update_compile_order -fileset sources_1

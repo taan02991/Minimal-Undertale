@@ -1,0 +1,23 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Thu May 14 00:43:27 2020
+# Process ID: 20876
+# Current directory: C:/Users/User/Projects/XilinxProjects/Lab06/Verilog/Lab06
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent16140 C:\Users\User\Projects\XilinxProjects\Lab06\Verilog\Lab06\Lab06.xpr
+# Log file: C:/Users/User/Projects/XilinxProjects/Lab06/Verilog/Lab06/vivado.log
+# Journal file: C:/Users/User/Projects/XilinxProjects/Lab06/Verilog/Lab06\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/User/Projects/XilinxProjects/Lab06/Verilog/Lab06/Lab06.xpr
+INFO: [Project 1-313] Project file moved from 'C:/Users/User/XilinxProjects/Lab06/Verilog/Lab06' since last save.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2018.3/data/ip'.
+open_project: Time (s): cpu = 00:01:00 ; elapsed = 00:00:39 . Memory (MB): peak = 688.164 ; gain = 114.367
+update_compile_order -fileset sources_1
+exit
+INFO: [Common 17-206] Exiting Vivado at Thu May 14 00:46:17 2020...

@@ -1,0 +1,363 @@
+/*
+
+Xilinx Vivado v2018.3 (64-bit) [Major: 2018, Minor: 3]
+SW Build: 2405991 on Thu Dec  6 23:38:27 MST 2018
+IP Build: 2404404 on Fri Dec  7 01:43:56 MST 2018
+
+Process ID (PID): 20344
+License: Customer
+
+Current time: 	Thu May 14 00:45:05 ICT 2020
+Time zone: 	Indochina Time (Asia/Bangkok)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 8
+
+Screen size: 1920x1080
+Screen resolution (DPI): 144
+Available screens: 1
+Available disk space: 551 GB
+Default font: family=Segoe UI,name=Segoe UI,style=plain,size=18
+
+Java version: 	9.0.4 64-bit
+Java home: 	C:/Xilinx/Vivado/2018.3/tps/win64/jre9.0.4
+Java executable location: 	C:/Xilinx/Vivado/2018.3/tps/win64/jre9.0.4/bin/java.exe
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	User
+User home directory: C:/Users/User
+User working directory: C:/Users/User/Projects/XilinxProjects/Lab06/Verilog/Lab06
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: C:/Xilinx/Vivado
+HDI_APPROOT: C:/Xilinx/Vivado/2018.3
+RDI_DATADIR: C:/Xilinx/Vivado/2018.3/data
+RDI_BINDIR: C:/Xilinx/Vivado/2018.3/bin
+
+Vivado preferences file location: C:/Users/User/AppData/Roaming/Xilinx/Vivado/2018.3/vivado.xml
+Vivado preferences directory: C:/Users/User/AppData/Roaming/Xilinx/Vivado/2018.3/
+Vivado layouts directory: C:/Users/User/AppData/Roaming/Xilinx/Vivado/2018.3/layouts
+PlanAhead jar file location: 	C:/Xilinx/Vivado/2018.3/lib/classes/planAhead.jar
+Vivado log file location: 	C:/Users/User/Projects/XilinxProjects/Lab06/Verilog/Lab06/vivado.log
+Vivado journal file location: 	C:/Users/User/Projects/XilinxProjects/Lab06/Verilog/Lab06/vivado.jou
+Engine tmp dir: 	C:/Users/User/Projects/XilinxProjects/Lab06/Verilog/Lab06/.Xil/Vivado-20344-LAPTOP-GNB4P8IU
+
+Xilinx Environment Variables
+----------------------------
+XILINX: C:/Xilinx/Vivado/2018.3/ids_lite/ISE
+XILINX_DSP: C:/Xilinx/Vivado/2018.3/ids_lite/ISE
+XILINX_PLANAHEAD: C:/Xilinx/Vivado/2018.3
+XILINX_SDK: C:/Xilinx/SDK/2018.3
+XILINX_VIVADO: C:/Xilinx/Vivado/2018.3
+XILINX_VIVADO_HLS: C:/Xilinx/Vivado/2018.3
+
+
+GUI allocated memory:	128 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 527 MB
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// WARNING: HEventQueue.dispatchEvent() is taking  7205 ms.
+// TclEventType: PROJECT_OPEN_DIALOG
+// WARNING: HTimer (HSTRUtils Dump STR Log Timer) is taking 805ms to process. Increasing delay to 4000 ms.
+// TclEventType: PROJECT_OPEN_DIALOG
+// HMemoryUtils.trashcanNow. Engine heap size: 527 MB. GUI used memory: 51 MB. Current time: 5/14/20, 12:45:06 AM ICT
+// bx (cp):  Open Project : addNotify
+// Opening Vivado Project: C:\Users\User\Projects\XilinxProjects\Lab06\Verilog\Lab06\Lab06.xpr. Version: Vivado v2018.3 
+// WARNING: HEventQueue.dispatchEvent() is taking  1502 ms.
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// Tcl Message: open_project C:/Users/User/Projects/XilinxProjects/Lab06/Verilog/Lab06/Lab06.xpr 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project C:/Users/User/Projects/XilinxProjects/Lab06/Verilog/Lab06/Lab06.xpr 
+// Tcl Message: INFO: [Project 1-313] Project file moved from 'C:/Users/User/XilinxProjects/Lab06/Verilog/Lab06' since last save. 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2018.3/data/ip'. 
+// HMemoryUtils.trashcanNow. Engine heap size: 554 MB. GUI used memory: 50 MB. Current time: 5/14/20, 12:45:21 AM ICT
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 109 MB (+111651kb) [00:01:32]
+// [Engine Memory]: 598 MB (+475138kb) [00:01:33]
+// WARNING: updateGUI() is taking  1132 ms.
+// [Engine Memory]: 665 MB (+39589kb) [00:01:43]
+// WARNING: HEventQueue.dispatchEvent() is taking  21018 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1876 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 668 MB. GUI used memory: 56 MB. Current time: 5/14/20, 12:45:48 AM ICT
+// WARNING: HEventQueue.dispatchEvent() is taking  4176 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1491 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1583 ms.
+// Tcl Message: open_project: Time (s): cpu = 00:00:58 ; elapsed = 00:00:40 . Memory (MB): peak = 698.844 ; gain = 124.617 
+// Project name: Lab06; location: C:/Users/User/Projects/XilinxProjects/Lab06/Verilog/Lab06; part: xc7a35tcpg236-1
+// WARNING: HEventQueue.dispatchEvent() is taking  1212 ms.
+// WARNING: HTimer (FileMgr Design Graph Update Timer) is taking 479ms to process. Increasing delay to 3000 ms.
+dismissDialog("Open Project"); // bx (cp)
+// WARNING: HEventQueue.dispatchEvent() is taking  1488 ms.
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed time: 18 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v)]", 1); // B (D, cp)
+// PAPropertyPanels.initPanels (vga.v) elapsed time: 0.2s
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v), vga_sync_unit : vga_sync (vga.v)]", 3, false, false, false, false, false, true); // B (D, cp) - Double Click
+// Elapsed time: 22 seconds
+maximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // O (aF, cp)
+unmaximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // O (aF, cp)
+maximizeFrame(PAResourceOtoP.PAViews_SOURCES, "Sources"); // ax (aI, cp)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), u : uart_echo (uart_echo.v)]", 4); // B (D, cp)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), u : uart_echo (uart_echo.v), uart_fifo : uart_fifo (uart_fifo.v)]", 5); // B (D, cp)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), u : uart_echo (uart_echo.v), uart_fifo : uart_fifo (uart_fifo.v)]", 5); // B (D, cp)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2, true); // B (D, cp) - Node
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), u : uart_echo (uart_echo.v)]", 4); // B (D, cp)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2); // B (D, cp)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2); // B (D, cp)
+unMaximizeFrame(PAResourceOtoP.PAViews_SOURCES, "Sources"); // ax (aI, cp)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2, true, false, false, false, false, true); // B (D, cp) - Double Click - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2, true); // B (D, cp) - Node
+// [Engine Memory]: 700 MB (+1586kb) [00:03:34]
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), u : uart_echo (uart_echo.v)]", 3, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), u : uart_echo (uart_echo.v), uart_fifo : uart_fifo (uart_fifo.v)]", 4, true, false, false, false, false, true); // B (D, cp) - Double Click - Node
+maximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // O (aF, cp)
+// Elapsed time: 14 seconds
+selectCodeEditor("uart_echo.v", 359, 263); // cl (w, cp)
+selectCodeEditor("uart_echo.v", 263, 314); // cl (w, cp)
+selectCodeEditor("uart_echo.v", 363, 554); // cl (w, cp)
+// Elapsed time: 10 seconds
+selectCodeEditor("uart_echo.v", 194, 161); // cl (w, cp)
+// Elapsed time: 10 seconds
+selectCodeEditor("uart_echo.v", 108, 296); // cl (w, cp)
+selectCodeEditor("uart_echo.v", 88, 263); // cl (w, cp)
+selectCodeEditor("uart_echo.v", 206, 287); // cl (w, cp)
+selectCodeEditor("uart_echo.v", 312, 289); // cl (w, cp)
+selectCodeEditor("uart_echo.v", 312, 295); // cl (w, cp)
+// Elapsed time: 13 seconds
+selectCodeEditor("uart_echo.v", 75, 160); // cl (w, cp)
+unmaximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // O (aF, cp)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2, true, false, false, false, false, true); // B (D, cp) - Double Click - Node
+maximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // O (aF, cp)
+// WARNING: HTimer (StateMonitor Timer) is taking 652ms to process. Increasing delay to 4000 ms.
+// Elapsed time: 16 seconds
+selectCodeEditor("vga.v", 6, 214); // cl (w, cp)
+selectCodeEditor("vga.v", 345, 461); // cl (w, cp)
+selectCodeEditor("vga.v", 156, 542); // cl (w, cp)
+selectCodeEditor("vga.v", 3, 56); // cl (w, cp)
+selectCodeEditor("vga.v", 300, 264); // cl (w, cp)
+selectCodeEditor("vga.v", 303, 224); // cl (w, cp)
+selectCodeEditor("vga.v", 306, 239); // cl (w, cp)
+selectCodeEditor("vga.v", 311, 227); // cl (w, cp)
+selectCodeEditor("vga.v", 319, 209); // cl (w, cp)
+selectCodeEditor("vga.v", 80, 63); // cl (w, cp)
+selectCodeEditor("vga.v", 230, 209); // cl (w, cp)
+selectCodeEditor("vga.v", 297, 243); // cl (w, cp)
+// Elapsed time: 11 seconds
+unmaximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // O (aF, cp)
+// [GUI Memory]: 117 MB (+2620kb) [00:05:45]
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v)]", 1, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v)]", 1, true, false, false, false, false, true); // B (D, cp) - Double Click - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v)]", 1, true); // B (D, cp) - Node
+maximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // O (aF, cp)
+selectCodeEditor("system.v", 89, 439); // cl (w, cp)
+selectCodeEditor("system.v", 107, 446); // cl (w, cp)
+selectCodeEditor("system.v", 92, 440); // cl (w, cp)
+selectCodeEditor("system.v", 54, 415); // cl (w, cp)
+selectCodeEditor("system.v", 146, 417); // cl (w, cp)
+selectCodeEditor("system.v", 150, 415); // cl (w, cp)
+selectCodeEditor("system.v", 168, 370); // cl (w, cp)
+selectCodeEditor("system.v", 122, 321); // cl (w, cp)
+selectCodeEditor("system.v", 149, 243); // cl (w, cp)
+selectCodeEditor("system.v", 120, 239); // cl (w, cp)
+// Elapsed time: 12 seconds
+unmaximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // O (aF, cp)
+selectCodeEditor("system.v", 176, 260); // cl (w, cp)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v)]", 1); // B (D, cp)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2, true, false, false, false, false, true); // B (D, cp) - Double Click - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v)]", 1, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v)]", 1, true, false, false, false, false, true); // B (D, cp) - Double Click - Node
+// Elapsed time: 10 seconds
+selectCodeEditor("system.v", 53, 265); // cl (w, cp)
+selectCodeEditor("system.v", 81, 265); // cl (w, cp)
+selectCodeEditor("system.v", 133, 261); // cl (w, cp)
+selectCodeEditor("system.v", 133, 261); // cl (w, cp)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v)]", 1); // B (D, cp)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2, true, false, false, false, false, true); // B (D, cp) - Double Click - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2, true, false, false, false, false, true); // B (D, cp) - Double Click - Node
+maximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // O (aF, cp)
+selectCodeEditor("vga.v", 89, 239); // cl (w, cp)
+selectCodeEditor("vga.v", 331, 155); // cl (w, cp)
+// Elapsed time: 16 seconds
+selectCodeEditor("vga.v", 131, 317); // cl (w, cp)
+// Elapsed time: 31 seconds
+selectCodeEditor("vga.v", 115, 543); // cl (w, cp)
+// Elapsed time: 12 seconds
+selectCodeEditor("vga.v", 278, 259); // cl (w, cp)
+selectCodeEditor("vga.v", 328, 251); // cl (w, cp)
+selectCodeEditor("vga.v", 309, 263); // cl (w, cp)
+selectCodeEditor("vga.v", 57, 336); // cl (w, cp)
+selectCodeEditor("vga.v", 207, 356); // cl (w, cp)
+selectCodeEditor("vga.v", 44, 341); // cl (w, cp)
+// Elapsed time: 21 seconds
+selectCodeEditor("vga.v", 137, 416); // cl (w, cp)
+selectCodeEditor("vga.v", 174, 395); // cl (w, cp)
+selectCodeEditor("vga.v", 320, 391); // cl (w, cp)
+selectCodeEditor("vga.v", 327, 393); // cl (w, cp)
+selectCodeEditor("vga.v", 135, 417); // cl (w, cp)
+selectCodeEditor("vga.v", 310, 349); // cl (w, cp)
+selectCodeEditor("vga.v", 349, 345); // cl (w, cp)
+// Elapsed time: 28 seconds
+selectCodeEditor("vga.v", 204, 312); // cl (w, cp)
+selectCodeEditor("vga.v", 155, 310); // cl (w, cp)
+selectCodeEditor("vga.v", 134, 339); // cl (w, cp)
+selectCodeEditor("vga.v", 242, 346); // cl (w, cp)
+selectCodeEditor("vga.v", 130, 414); // cl (w, cp)
+// Elapsed time: 11 seconds
+selectCodeEditor("vga.v", 130, 338); // cl (w, cp)
+selectCodeEditor("vga.v", 429, 410); // cl (w, cp)
+selectCodeEditor("vga.v", 726, 404); // cl (w, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "system.v", 3); // k (j, cp)
+selectCodeEditor("system.v", 164, 320); // cl (w, cp)
+selectCodeEditor("system.v", 179, 361); // cl (w, cp)
+selectCodeEditor("system.v", 123, 329); // cl (w, cp)
+selectCodeEditor("system.v", 205, 231); // cl (w, cp)
+selectCodeEditor("system.v", 186, 216); // cl (w, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "uart_echo.v", 2); // k (j, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "system.v", 3); // k (j, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "uart_echo.v", 2); // k (j, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "system.v", 3); // k (j, cp)
+selectCodeEditor("system.v", 204, 238); // cl (w, cp)
+selectCodeEditor("system.v", 350, 157); // cl (w, cp)
+selectCodeEditor("system.v", 219, 467); // cl (w, cp)
+selectCodeEditor("system.v", 218, 467); // cl (w, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "uart_echo.v", 2); // k (j, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "vga.v", 1); // k (j, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "uart_echo.v", 2); // k (j, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "vga.v", 1); // k (j, cp)
+// Elapsed time: 12 seconds
+selectCodeEditor("vga.v", 89, 239); // cl (w, cp)
+selectCodeEditor("vga.v", 403, 286); // cl (w, cp)
+selectCodeEditor("vga.v", 116, 388); // cl (w, cp)
+selectCodeEditor("vga.v", 814, 363); // cl (w, cp)
+selectCodeEditor("vga.v", 817, 365); // cl (w, cp)
+selectCodeEditor("vga.v", 813, 322); // cl (w, cp)
+selectCodeEditor("vga.v", 833, 340); // cl (w, cp)
+selectCodeEditor("vga.v", 166, 215); // cl (w, cp)
+selectCodeEditor("vga.v", 166, 170); // cl (w, cp)
+selectCodeEditor("vga.v", 166, 170); // cl (w, cp)
+// Elapsed time: 15 seconds
+selectCodeEditor("vga.v", 95, 166); // cl (w, cp)
+selectCodeEditor("vga.v", 106, 299); // cl (w, cp)
+selectCodeEditor("vga.v", 159, 163); // cl (w, cp)
+selectCodeEditor("vga.v", 152, 161); // cl (w, cp)
+selectCodeEditor("vga.v", 441, 167); // cl (w, cp)
+selectCodeEditor("vga.v", 450, 167); // cl (w, cp)
+selectCodeEditor("vga.v", 309, 186); // cl (w, cp)
+selectCodeEditor("vga.v", 155, 164); // cl (w, cp)
+selectCodeEditor("vga.v", 547, 160); // cl (w, cp)
+selectCodeEditor("vga.v", 545, 163); // cl (w, cp)
+selectCodeEditor("vga.v", 327, 174); // cl (w, cp)
+selectCodeEditor("vga.v", 524, 163); // cl (w, cp)
+selectCodeEditor("vga.v", 132, 199); // cl (w, cp)
+selectCodeEditor("vga.v", 349, 188); // cl (w, cp)
+selectCodeEditor("vga.v", 349, 189); // cl (w, cp)
+selectCodeEditor("vga.v", 156, 166); // cl (w, cp)
+// Elapsed time: 16 seconds
+selectCodeEditor("vga.v", 170, 172); // cl (w, cp)
+selectCodeEditor("vga.v", 173, 171); // cl (w, cp)
+selectCodeEditor("vga.v", 331, 171); // cl (w, cp)
+selectCodeEditor("vga.v", 167, 173); // cl (w, cp)
+selectCodeEditor("vga.v", 350, 201); // cl (w, cp)
+selectCodeEditor("vga.v", 131, 192); // cl (w, cp)
+selectCodeEditor("vga.v", 131, 192); // cl (w, cp)
+selectCodeEditor("vga.v", 134, 262); // cl (w, cp)
+// Elapsed time: 30 seconds
+selectCodeEditor("vga.v", 85, 247); // cl (w, cp)
+selectCodeEditor("vga.v", 468, 274); // cl (w, cp)
+selectCodeEditor("vga.v", 434, 266); // cl (w, cp)
+selectCodeEditor("vga.v", 77, 130); // cl (w, cp)
+selectCodeEditor("vga.v", 161, 232); // cl (w, cp)
+selectCodeEditor("vga.v", 483, 245); // cl (w, cp)
+selectCodeEditor("vga.v", 592, 251); // cl (w, cp)
+selectCodeEditor("vga.v", 155, 236); // cl (w, cp)
+selectCodeEditor("vga.v", 623, 466); // cl (w, cp)
+selectCodeEditor("vga.v", 171, 539); // cl (w, cp)
+selectCodeEditor("vga.v", 165, 546); // cl (w, cp)
+selectCodeEditor("vga.v", 590, 451); // cl (w, cp)
+selectCodeEditor("vga.v", 396, 388); // cl (w, cp)
+selectCodeEditor("vga.v", 398, 390); // cl (w, cp)
+selectCodeEditor("vga.v", 398, 390); // cl (w, cp)
+// Elapsed time: 11 seconds
+selectCodeEditor("vga.v", 399, 454); // cl (w, cp)
+// Elapsed time: 11 seconds
+selectCodeEditor("vga.v", 758, 434); // cl (w, cp)
+selectCodeEditor("vga.v", 118, 338); // cl (w, cp)
+selectCodeEditor("vga.v", 119, 339); // cl (w, cp)
+selectCodeEditor("vga.v", 551, 396); // cl (w, cp)
+selectCodeEditor("vga.v", 816, 438); // cl (w, cp)
+selectCodeEditor("vga.v", 837, 371); // cl (w, cp)
+selectCodeEditor("vga.v", 663, 369); // cl (w, cp)
+selectCodeEditor("vga.v", 796, 392); // cl (w, cp)
+selectCodeEditor("vga.v", 636, 394); // cl (w, cp)
+selectCodeEditor("vga.v", 804, 446); // cl (w, cp)
+selectCodeEditor("vga.v", 708, 433); // cl (w, cp)
+// Elapsed time: 26 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "uart_echo.v", 2); // k (j, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "vga.v", 1); // k (j, cp)
+selectCodeEditor("vga.v", 345, 423); // cl (w, cp)
+selectCodeEditor("vga.v", 179, 438); // cl (w, cp)
+// Elapsed time: 10 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "uart_echo.v", 2); // k (j, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "vga.v", 1); // k (j, cp)
+// Elapsed time: 75 seconds
+selectCodeEditor("vga.v", 735, 436); // cl (w, cp)
+selectCodeEditor("vga.v", 178, 474); // cl (w, cp)
+selectCodeEditor("vga.v", 154, 503); // cl (w, cp)
+selectCodeEditor("vga.v", 132, 452); // cl (w, cp)
+selectCodeEditor("vga.v", 125, 449); // cl (w, cp)
+// Elapsed time: 27 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Project Summary", 0); // k (j, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "vga.v", 1); // k (j, cp)
+unMinimizeFrame(PAResourceOtoP.PAViews_SOURCES, "Sources"); // ax
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v)]", 1); // B (D, cp)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v)]", 1); // B (D, cp)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), u : uart_echo (uart_echo.v)]", 3); // B (D, cp)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2); // B (D, cp)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), u : uart_echo (uart_echo.v)]", 4); // B (D, cp)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), u : uart_echo (uart_echo.v)]", 4); // B (D, cp)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2); // B (D, cp)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), u : uart_echo (uart_echo.v)]", 3, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2, true, false, false, false, true, false); // B (D, cp) - Popup Trigger - Node
+selectCodeEditor("vga.v", 536, 156); // cl (w, cp)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system (system.v), vga : vga_test (vga.v)]", 2, true, false, false, false, true, false); // B (D, cp) - Popup Trigger - Node
+// [GUI Memory]: 123 MB (+862kb) [00:18:21]
+selectCodeEditor("vga.v", 417, 267); // cl (w, cp)
