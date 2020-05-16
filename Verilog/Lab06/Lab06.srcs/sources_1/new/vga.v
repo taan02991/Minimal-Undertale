@@ -151,9 +151,14 @@ module vga_test
 	reg[9:0] h, k;
 	reg[18:0] d_sq;
 	reg [11:0] sel_color;
+	wire H_is_intersected;
+	reg H_rst, H_is_active;
+	hero inw(x - 220, y - 140, clk, H_rst, H_is_active, char, H_is_intersected);
     initial begin
         h = 320;
         k = 240;
+        H_rst = 0;
+        H_is_active = 1;
     end
 
     always @(posedge clk) begin
@@ -163,7 +168,18 @@ module vga_test
 
 
 			//start_taan
-
+            if( ((x == 220 || x == 420) && (y >= 140 && y <= 340)) 
+            || ((x >= 220 && x <= 420) && (y == 140 || y == 340)) ) begin
+                rgb_reg = 12'b111111111111;
+            end
+            else begin
+                rgb_reg = 12'b000000000000;
+            end
+            if(H_is_intersected) begin
+                rgb_reg = 12'b000011111111;
+            end
+            
+            
 			//end_taan
 
 
