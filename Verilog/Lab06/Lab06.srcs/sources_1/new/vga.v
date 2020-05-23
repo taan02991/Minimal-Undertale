@@ -127,6 +127,9 @@ module vga_test
 
 	parameter WIDTH = 640;
 	parameter HEIGHT = 480;
+	
+	//clk div
+	reg[23:0] target_clk;
 
 	//health
 	reg [1:0] hero = 3;
@@ -154,11 +157,19 @@ module vga_test
 	wire H_is_intersected;
 	reg H_rst, H_is_active;
 	hero inw(x - 220, y - 140, clk, H_rst, H_is_active, char, H_is_intersected);
+	wire C_is_intersected;
+	reg C_rst, C_is_active, C2_rst, C2_is_active;
+	circle #(.IX(80), .IY(0)) c(x - 220, y - 140, target_clk[18], C_rst, C_is_active, C_is_intersected);
+	circle #(.IX(200), .IY(100)) c2(x - 220, y - 140, target_clk[18], C2_rst, C2_is_active, C2_is_intersected);
     initial begin
         h = 320;
         k = 240;
         H_rst = 0;
         H_is_active = 1;
+        C_rst = 0;
+        C_is_active = 1;
+        C2_rst = 0;
+        C2_is_active = 1;
     end
 
     always @(posedge clk) begin
@@ -175,11 +186,24 @@ module vga_test
             else begin
                 rgb_reg = 12'b000000000000;
             end
-            if(H_is_intersected) begin
+            if(H_is_intersected) begin // Hero
                 rgb_reg = 12'b000011111111;
             end
-            
-            
+            if(C_is_intersected) begin // Circle
+                rgb_reg = 12'b111111111111;
+            end
+            if(C2_is_intersected) begin // Circle
+                rgb_reg = 12'b111111111111;
+            end
+            if(H_is_intersected && C_is_intersected) begin
+                C_is_active = 0;
+                hero = hero - 1;
+            end
+            if(H_is_intersected && C2_is_intersected) begin
+                C2_is_active = 0;
+                hero = hero - 1;
+            end
+            target_clk = target_clk + 1;
 			//end_taan
 
 
@@ -223,3 +247,5 @@ module vga_test
 //	output
 	assign rgb = (video_on) ? rgb_reg : 12'b0;
 endmodule
+
+
