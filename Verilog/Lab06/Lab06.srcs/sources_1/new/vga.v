@@ -183,7 +183,7 @@ module vga_test
                 y, // current position.y
                 res  // result, 1 if current pixel is on text, 0 otherwise
    );
-   Pixel_On_Text2 #(.displayText("Thanawat Jierawatanakanok 6031020321")) t2(
+   Pixel_On_Text2 #(.displayText("Thanawat Jierawatanakanok    6031020321")) t2(
                 clk,
                 200, // text position.x (top left)
                 150, // text position.y (top left)
@@ -191,13 +191,21 @@ module vga_test
                 y, // current position.y
                 res2  // result, 1 if current pixel is on text, 0 otherwise
    );
-   Pixel_On_Text2 #(.displayText("Nithipud Tunticharoenviwat 6031032921")) t3(
+   Pixel_On_Text2 #(.displayText("Nithipud Tunticharoenviwat   6031032921")) t3(
                 clk,
                 200, // text position.x (top left)
                 200, // text position.y (top left)
                 x, // current position.x
                 y, // current position.y
                 res3  // result, 1 if current pixel is on text, 0 otherwise
+   );
+   Pixel_On_Text2 #(.displayText("Krit Kruaykitanon            6031002021")) t4(
+                clk,
+                200, // text position.x (top left)
+                250, // text position.y (top left)
+                x, // current position.x
+                y, // current position.y
+                res4  // result, 1 if current pixel is on text, 0 otherwise
    );
     
    
@@ -351,7 +359,7 @@ module vga_test
 			//end_pud
 
 			//start_ou
-            if(res || res2 || res3) begin
+            if(res || res2 || res3 || res4) begin
                 rgb_reg = 12'b111111111111;
             end
 			//end_ou
