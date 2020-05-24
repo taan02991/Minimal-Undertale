@@ -127,15 +127,22 @@ module vga_test
 
 	parameter WIDTH = 640;
 	parameter HEIGHT = 480;
-	parameter MAX_HERO_HEALTH = 1000;
-	
+    parameter MIN_HERO_HEALTH = 221;
+	parameter MAX_HERO_HEALTH = 419;
+	parameter MIN_MONT1_HEALTH = 50;
+    parameter MIN_MONT2_HEALTH = 326;	
+    parameter MAX_MONT1_HEALTH = 319;
+    parameter MAX_MONT2_HEALTH = 611;
+
 	//clk div
 	reg[23:0] target_clk;
 
 	//health
-	reg [10:0] hero = 1000;
-	reg [1:0] mon1 = 3;
-	reg [1:0] mon2 = 3;
+	reg [10:0] hero_health = MAX_HERO_HEALTH;
+//	reg [1:0] mon1 = 3;
+//	reg [1:0] mon2 = 3;
+	reg [10:0] mont_1_health = MAX_MONT1_HEALTH;
+    reg [10:0] mont_2_health = MAX_MONT2_HEALTH;
 
 	//state controller
 	reg [2:0] state = 0;
@@ -168,12 +175,13 @@ module vga_test
 	circleX #(.IX(80), .IY(0)) cx(x - 220, y - 140, target_clk[18], CX_rst, CX_is_active, CX_is_intersected);
 	circleX #(.IX(180), .IY(220), .STEP_X(0), .STEP_Y(5)) cx2(x - 220, y - 140, target_clk[18], CX2_rst, CX2_is_active, CX2_is_intersected);
 	
-	parameter MAX_MONT1_HEALTH = 611;
-    parameter MAX_MONT2_HEALTH = 319;
-    reg [10:0] mont_1_health = MAX_MONT1_HEALTH;
-    reg [10:0] mont_2_health = MAX_MONT2_HEALTH;
-    
-    reg attack_bar_moving = 1;
+	 
+	// hero_is_alive from hero_blood is lower than MIN_HERO_HEALTH
+	// mont_is_alive use the same logic here
+    reg can_attack = 0;
+    // attack_to : 1 >> attack mont 1, attack_to : 2 >> attack mont 2
+    reg [1:0] attack_to = 0; 
+    reg attack_bar_moving = 0;
 	
     initial begin
         h = 320;
@@ -200,8 +208,6 @@ module vga_test
 			//start_bee
 
 			//end_bee
-            // blood created 
-            // frame blood hero
             
             
 			//start_taan
@@ -211,18 +217,18 @@ module vga_test
                 rgb_reg = 12'b111111111111;
             end
             // hero blood frame
-            else if( ((x == 220 || x == 420) && (y >= 50 && y <= 80)) 
-            || ((x >= 220 && x <= 420) && (y == 50 || y == 80)) ) begin
+            else if( ((x == MIN_HERO_HEALTH-1 || x == MAX_HERO_HEALTH+1) && (y >= 50 && y <= 80)) 
+            || ((x >= MIN_HERO_HEALTH-1 && x <= MAX_HERO_HEALTH+1) && (y == 50 || y == 80)) ) begin
                 rgb_reg = 12'b111111111111;
             end
             // Monster 1 blood frame
-            else if( ((x == 325 || x == MAX_MONT1_HEALTH+1) && (y >= 400 && y <= 420)) 
-            || ((x >= 325 && x <= MAX_MONT1_HEALTH+1) && (y == 400 || y == 420)) ) begin
+            else if( ((x == MIN_MONT1_HEALTH-1 || x == MAX_MONT1_HEALTH+1) && (y >= 400 && y <= 420)) 
+            || ((x >= MIN_MONT1_HEALTH-1 && x <= MAX_MONT1_HEALTH+1) && (y == 400 || y == 420)) ) begin
                 rgb_reg = 12'b111111111111;
             end
             // Monster 2 blood frame
-            else if( ((x == 49 || x == MAX_MONT2_HEALTH+1) && (y >= 400 && y <= 420)) 
-            || ((x >= 49 && x <= MAX_MONT2_HEALTH+1) && (y == 400 || y == 420)) ) begin
+            else if( ((x == MIN_MONT2_HEALTH-1 || x == MAX_MONT2_HEALTH+1) && (y >= 400 && y <= 420)) 
+            || ((x >= MIN_MONT2_HEALTH-1 && x <= MAX_MONT2_HEALTH+1) && (y == 400 || y == 420)) ) begin
                 rgb_reg = 12'b111111111111;
             end
             // attack bar frame
@@ -241,17 +247,17 @@ module vga_test
             
             // hero blood            
             if( (y >= 51 && y <= 79)
-            && (x >= 221 && x <= 221 + (419-221)*(hero/MAX_HERO_HEALTH)) ) begin
+            && (x >= MIN_HERO_HEALTH && x <= hero_health) ) begin
                 rgb_reg = 12'b111100000000;
             end
             // monster 1's blood
             else if( (y >= 401 && y <= 419) 
-            && (x >= 326 && x <= mont_1_health) ) begin
+            && (x >= MIN_MONT1_HEALTH && x <= mont_1_health) ) begin
                 rgb_reg = 12'b000000001111;
             end
             // monster 2's blood
             else if( (y >= 401 && y <= 419)
-            && (x >= 50 && x <= mont_2_health)) begin
+            && (x >= MIN_MONT2_HEALTH && x <= mont_2_health)) begin
                 rgb_reg = 12'b000011110000;
             end
             
@@ -274,19 +280,19 @@ module vga_test
             end
             if(H_is_intersected && C_is_intersected) begin
                 C_is_active = 0;
-                hero = hero - 1;
+                hero_health = hero_health - 50;
             end
             if(H_is_intersected && C2_is_intersected) begin
                 C2_is_active = 0;
-                hero = hero - 1;
+                hero_health = hero_health - 50;
             end
             if(H_is_intersected && CX_is_intersected && CX_is_active) begin
                 CX_is_active = 0;
-                hero = hero - 1;
+                hero_health = hero_health - 100;
             end
             if(H_is_intersected && CX2_is_intersected && CX2_is_active) begin
                 CX2_is_active = 0;
-                hero = hero - 1;
+                hero_health = hero_health - 100;
             end
             target_clk = target_clk + 1;
 			//end_taan
@@ -296,10 +302,10 @@ module vga_test
 			// control logic of attack bar
             if(x == 155 && y==489 && attack_bar_moving) begin 
                 if(direction)begin
-                   move = move+2;
+                   move = move+3;
                 end
                 else begin
-                   move = move-2;
+                   move = move-3;
                 end
                if(move > 490 - 150 - 5 && attack_bar_moving) begin
                   direction = 0;
@@ -333,11 +339,37 @@ module vga_test
 	       8'h00: led[8] = 1;
 	       8'h20: begin 
 	           led[0] = 1; sel_color = 12'b111111111111; 
-	           if (attack_bar_moving) begin
+	           if (attack_bar_moving && can_attack && attack_to != 0) begin
 	               attack_bar_moving = 0;
+	               if(attack_to == 1) begin
+	               	   mont_1_health = mont_1_health - 100;
+	               end
+	               else if(attack_to == 2) begin
+	                   mont_2_health = mont_2_health - 100;	               
+	               end
+	               attack_to = 0;
+	               can_attack = 0;
 	           end
-	           else begin attack_bar_moving = 1; end;
+	           // push space bar again to hit monsteer // test
+//	           else begin attack_bar_moving = 1; end;
 	       end //SPACE
+	       8'h6c: begin // L
+	           // need to check state in attack mode
+	           if(can_attack == 0 && MIN_MONT1_HEALTH+10 <= mont_1_health) begin
+	               can_attack = 1;
+	               attack_to = 1;
+	               attack_bar_moving = 1;
+	               led[1] = 1;
+	           end
+	       end
+	       8'h72: begin // R
+	           if(can_attack == 0 && MIN_MONT2_HEALTH+10 <= mont_2_health) begin
+	               can_attack = 1;
+	               attack_to = 2;
+	               attack_bar_moving = 1;
+	               led[2] = 1;
+	           end
+	       end
 	       8'h6d: begin led[1] = 1; sel_color = 12'b111100001111; end //m
 	       8'h63: begin led[2] = 1; sel_color = 12'b000011111111; end //c
 	       8'h79: begin led[3] = 1; sel_color = 12'b111111110000; end //y
