@@ -175,7 +175,7 @@ module vga_test
 	circleX #(.IX(80), .IY(0)) cx(x - 220, y - 140, target_clk[18], CX_rst, CX_is_active, CX_is_intersected);
 	circleX #(.IX(180), .IY(220), .STEP_X(0), .STEP_Y(5)) cx2(x - 220, y - 140, target_clk[18], CX2_rst, CX2_is_active, CX2_is_intersected);
 	
-	Pixel_On_Text2 #(.displayText("Nonthanat Theeratanapartkul 6031019821")) t1(
+	Pixel_On_Text2 #(.displayText("Nonthanat Theeratanapartkul  6031019821")) t1(
                 clk,
                 200, // text position.x (top left)
                 100, // text position.y (top left)
