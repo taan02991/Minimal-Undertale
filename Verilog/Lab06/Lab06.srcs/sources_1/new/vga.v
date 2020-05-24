@@ -145,7 +145,7 @@ module vga_test
     reg [10:0] mont_2_health = MAX_MONT2_HEALTH;
 
 	//state controller
-	reg [2:0] state = 0;
+	reg [2:0] state = 1;
 
 	// register for Basys 2 8-bit RGB DAC
 	reg [11:0] rgb_reg;
@@ -298,7 +298,8 @@ module vga_test
 			//end_taan
 
 
-			//start_tee
+			//start_pud
+			if(state==2) begin
 			// control logic of attack bar
             if(x == 155 && y==489 && attack_bar_moving) begin 
                 if(direction)begin
@@ -314,14 +315,13 @@ module vga_test
                   direction = 1;
                 end
             end
-			//end_tee
-
-
-			//start_pud
+            
 			   //guide line attack bar
                if(x >= 270 && x <= 370 && y <= 393 && y >= 346) begin
                 rgb_reg = 12'b111100000000;
                end
+               
+            end
 			//end_pud
 
 
@@ -345,22 +345,28 @@ module vga_test
 	           if (attack_bar_moving && can_attack && attack_to != 0) begin
 	               attack_bar_moving = 0;
 	               if(attack_to == 1) begin
-	                   //100px from center(x=320) area
-	                   if(move+153 >= 270 && move+153 <= 370) begin
-    	               	   mont_1_health = mont_1_health - 100;
-    	               end
-    	               else begin
-    	                   mont_1_health = mont_1_health - 50;
+	                   if(state == 2) begin
+	                       //100px from center(x=320) area
+                           if(move+153 >= 270 && move+153 <= 370) begin
+                               mont_1_health = mont_1_health - 100;
+                           end
+                           else begin
+                               mont_1_health = mont_1_health - 50;
+                           end
+                           state = 1;
     	               end
 	               end
 	               else if(attack_to == 2) begin
-	                   //100px from center(x=320) area
-	                   if(move+153 >= 270 && move+153 <= 370) begin
-    	               	   mont_2_health = mont_2_health - 100;
+	                   if(state ==2) begin
+                           //100px from center(x=320) area
+                           if(move+153 >= 270 && move+153 <= 370) begin
+                               mont_2_health = mont_2_health - 100;
+                           end
+                           else begin
+                               mont_2_health = mont_2_health - 50;
+                           end
+                           state = 1;
     	               end
-    	               else begin
-    	                   mont_2_health = mont_2_health - 50;
-    	               end     
 	               end
 	               attack_to = 0;
 	               can_attack = 0;
@@ -369,6 +375,9 @@ module vga_test
 //	           else begin attack_bar_moving = 1; end;
 	       end //SPACE
 	       8'h6c: begin // L
+	           //change state to attack state
+	           state = 2;
+	       
 	           // need to check state in attack mode
 	           if(can_attack == 0 && MIN_MONT1_HEALTH+10 <= mont_1_health) begin
 	               can_attack = 1;
@@ -378,6 +387,9 @@ module vga_test
 	           end
 	       end
 	       8'h72: begin // R
+	           //change state to attack state
+	           state = 2;
+	       
 	           if(can_attack == 0 && MIN_MONT2_HEALTH+10 <= mont_2_health) begin
 	               can_attack = 1;
 	               attack_to = 2;
