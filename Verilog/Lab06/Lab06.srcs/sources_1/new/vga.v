@@ -319,7 +319,7 @@ module vga_test
 
 			//start_pud
 			   //guide line attack bar
-               if(x >= 315 && x <= 325 && y <= 393 && y >= 346) begin
+               if(x >= 270 && x <= 370 && y <= 393 && y >= 346) begin
                 rgb_reg = 12'b111100000000;
                end
 			//end_pud
