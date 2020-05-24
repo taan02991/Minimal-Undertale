@@ -39,11 +39,10 @@ module hero #(
     reg[9:0] k = IY;
 //    x,y h,k, R
     
-    //assign is_intersected = ( (  (x-h)*(x-h) + (y-k)*(y-k) <= R*R  ) && is_active ) ? 1 : 0;
-//    assign X = x-h;
-//    assign Y = y-k;
-    
-    assign is_intersected = (( (x-h)**2 + (y-k)**2 - R**2 )**3 == (x-h)**2*(y-k)**3  && is_active ) ? 1 : 0;
+    assign is_intersected = ( (  (x-h)*(x-h) + (y-k)*(y-k) <= R*R  ) && is_active ) ? 1 : 0;
+    //    assign X = x-h;
+    //    assign Y = y-k;
+//    assign is_intersected = (( (x)**2 + (y)**2 - R**2 )**3 <= (x)**2*(y)**3  && is_active ) ? 1 : 0;
 
     always @(posedge clk) begin
         if(rst) begin
