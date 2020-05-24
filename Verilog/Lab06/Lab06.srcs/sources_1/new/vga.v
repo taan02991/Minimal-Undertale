@@ -318,7 +318,10 @@ module vga_test
 
 
 			//start_pud
-
+			   //guide line attack bar
+               if(x >= 315 && x <= 325 && y <= 393 && y >= 346) begin
+                rgb_reg = 12'b111100000000;
+               end
 			//end_pud
 
 
@@ -342,10 +345,22 @@ module vga_test
 	           if (attack_bar_moving && can_attack && attack_to != 0) begin
 	               attack_bar_moving = 0;
 	               if(attack_to == 1) begin
-	               	   mont_1_health = mont_1_health - 100;
+	                   //100px from center(x=320) area
+	                   if(move+153 >= 270 && move+153 <= 370) begin
+    	               	   mont_1_health = mont_1_health - 100;
+    	               end
+    	               else begin
+    	                   mont_1_health = mont_1_health - 50;
+    	               end
 	               end
 	               else if(attack_to == 2) begin
-	                   mont_2_health = mont_2_health - 100;	               
+	                   //100px from center(x=320) area
+	                   if(move+153 >= 270 && move+153 <= 370) begin
+    	               	   mont_2_health = mont_2_health - 100;
+    	               end
+    	               else begin
+    	                   mont_2_health = mont_2_health - 50;
+    	               end     
 	               end
 	               attack_to = 0;
 	               can_attack = 0;
