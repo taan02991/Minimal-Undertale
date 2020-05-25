@@ -381,6 +381,10 @@ module vga_test
 	    case(char)
 	       8'h00: led[8] = 1;
 	       8'h20: begin 
+	           if(state==0) begin
+	               state=1;
+	           end
+	           else begin
 	           led[0] = 1; sel_color = 12'b111111111111; 
 	           if (attack_bar_moving && can_attack && attack_to != 0) begin
 	               attack_bar_moving = 0;
@@ -407,13 +411,11 @@ module vga_test
 	               attack_to = 0;
 	               can_attack = 0;
 	           end
+	           end
 	           // push space bar again to hit monsteer // test
 //	           else begin attack_bar_moving = 1; end;
 	       end //SPACE
 	       8'h6c: begin // L
-	           //change state to attack state
-	           state = 2;
-	       
 	           // need to check state in attack mode
 	           if(can_attack == 0 && MIN_MONT1_HEALTH+10 <= mont_1_health) begin
 	               can_attack = 1;
@@ -423,9 +425,6 @@ module vga_test
 	           end
 	       end
 	       8'h72: begin // R
-	           //change state to attack state
-	           state = 2;
-	       
 	           if(can_attack == 0 && MIN_MONT2_HEALTH+10 <= mont_2_health) begin
 	               can_attack = 1;
 	               attack_to = 2;
