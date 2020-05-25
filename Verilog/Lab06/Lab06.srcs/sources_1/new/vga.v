@@ -246,8 +246,8 @@ module vga_test
             
 			//start_taan
 			// Rectangle block in bullet avoiding phase
-            if( ((x == 220 || x == 420) && (y >= 140 && y <= 340)) 
-            || ((x >= 220 && x <= 420) && (y == 140 || y == 340)) ) begin
+            if( (((x == 220 || x == 420) && (y >= 140 && y <= 340)) 
+            || ((x >= 220 && x <= 420) && (y == 140 || y == 340))) && state==1 ) begin
                 rgb_reg = 12'b111111111111;
             end
             // hero blood frame
@@ -297,34 +297,34 @@ module vga_test
             
 
 
-            if(H_is_intersected) begin // Hero
+            if(H_is_intersected && state==1) begin // Hero
                 rgb_reg = 12'b111100000000;
             end
-            if(C_is_intersected) begin // Circle
+            if(C_is_intersected && state==1) begin // Circle
                 rgb_reg = 12'b000000001111;
             end
-            if(C2_is_intersected) begin // Circle
+            if(C2_is_intersected && state==1) begin // Circle
                 rgb_reg = 12'b000000001111;
             end
-            if(CX_is_intersected) begin // CircleX
+            if(CX_is_intersected && state==1) begin // CircleX
                 rgb_reg = 12'b000011110000;
             end
-            if(CX2_is_intersected) begin // CircleX
+            if(CX2_is_intersected && state==1) begin // CircleX
                 rgb_reg = 12'b000011110000;
             end
-            if(H_is_intersected && C_is_intersected) begin
+            if(H_is_intersected && C_is_intersected && state==1) begin
                 C_is_active = 0;
                 hero_health = hero_health - 50;
             end
-            if(H_is_intersected && C2_is_intersected) begin
+            if(H_is_intersected && C2_is_intersected && state==1) begin
                 C2_is_active = 0;
                 hero_health = hero_health - 50;
             end
-            if(H_is_intersected && CX_is_intersected && CX_is_active) begin
+            if(H_is_intersected && CX_is_intersected && CX_is_active && state==1) begin
                 CX_is_active = 0;
                 hero_health = hero_health - 100;
             end
-            if(H_is_intersected && CX2_is_intersected && CX2_is_active) begin
+            if(H_is_intersected && CX2_is_intersected && CX2_is_active && state==1) begin
                 CX2_is_active = 0;
                 hero_health = hero_health - 100;
             end
