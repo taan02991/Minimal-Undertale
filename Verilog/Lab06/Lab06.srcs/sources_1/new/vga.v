@@ -266,14 +266,14 @@ module vga_test
                 rgb_reg = 12'b111111111111;
             end
             // attack bar frame
-            else if( ((x == 150 || x == 490) && (y >= 350 && y <= 390)) 
-            || ((x >= 150 && x <= 490) && (y == 350 || y == 390)) ) begin
+            else if(( ((x == 150 || x == 490) && (y >= 350 && y <= 390)) 
+            || ((x >= 150 && x <= 490) && (y == 350 || y == 390)) )&& state==2) begin
                 rgb_reg = 12'b111111111111;
             end
             // attack bar pin go and back in frame 150 and 490
-            else if( (x >= 151+move && x <= 155+move)  && (y >= 351 && y <= 388) ) begin
+            else if( (x >= 151+move && x <= 155+move)  && (y >= 351 && y <= 388) && state==2) begin
                 rgb_reg = 12'b111111111111;         
-            end            
+            end   
             else begin
                 rgb_reg = 12'b000000000000;
             end
@@ -335,7 +335,7 @@ module vga_test
 			//start_pud
 			if(state==2) begin
 			// control logic of attack bar
-            if(x == 155 && y==489 && attack_bar_moving) begin 
+            if(x == 155 && y==489 && attack_bar_moving && state==2) begin 
                 if(direction)begin
                    move = move+3;
                 end
@@ -351,7 +351,7 @@ module vga_test
             end
             
 			   //guide line attack bar
-               if(x >= 270 && x <= 370 && y <= 393 && y >= 346) begin
+               if(x >= 270 && x <= 370 && y <= 393 && y >= 346 && state==2) begin
                 rgb_reg = 12'b111100000000;
                end
                
