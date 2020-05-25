@@ -20,17 +20,16 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module circle #(
-    R=5,
+module circleX #(
+    R=3,
     IX=100,
     IY=100,
     DIR_X=1,
     DIR_Y=0,
     D_WIDTH=200,
     D_HEIGHT=200,
-    STEP_X = 1,
-    STEP_Y = 1,
-    TYPE = 0
+    STEP_X = 3,
+    STEP_Y = 2
     )
     (
     input wire[9:0] x,
@@ -45,7 +44,7 @@ module circle #(
     reg dir_x = DIR_X;
     reg dir_y = DIR_Y;
     
-    assign is_intersected = (((x-h)*(x-h) + (y-k)*(y-k) <= R*R) && is_active) ? 1 : 0; 
+    assign is_intersected = (((x-h)*(x-h) + (y-k)*(y-k) <= R*R)&& (((x-h)*(x-h) + (y-k)*(y-k) >= (R-3)*(R-3))) && is_active) ? 1 : 0; 
 //    assign is_intersected = (TYPE && ((x-h)*(x-h) + (y-k)*(y-k) >= (R-3)*(R-3))) ? 1 : is_intersected;
 //    assign is_intersected = ()
     always @(posedge clk) begin
@@ -57,7 +56,7 @@ module circle #(
         end
         if(is_active) begin
             h = dir_x ? h + STEP_X: h - STEP_X;
-            k = dir_y ? k + 1: k - 1;
+            k = dir_y ? k + STEP_Y: k - STEP_Y;
             if(h <= R + 1) dir_x = 1;
             if(h >= D_WIDTH - R + 1) dir_x = 0;
             if(k <= R + 1) dir_y = 1;

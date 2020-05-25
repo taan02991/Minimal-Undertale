@@ -127,14 +127,22 @@ module vga_test
 
 	parameter WIDTH = 640;
 	parameter HEIGHT = 480;
-	
+    parameter MIN_HERO_HEALTH = 221;
+	parameter MAX_HERO_HEALTH = 419;
+	parameter MIN_MONT1_HEALTH = 50;
+    parameter MIN_MONT2_HEALTH = 326;	
+    parameter MAX_MONT1_HEALTH = 319;
+    parameter MAX_MONT2_HEALTH = 611;
+
 	//clk div
 	reg[23:0] target_clk;
 
 	//health
-	reg [1:0] hero = 3;
-	reg [1:0] mon1 = 3;
-	reg [1:0] mon2 = 3;
+	reg [10:0] hero_health = MAX_HERO_HEALTH;
+//	reg [1:0] mon1 = 3;
+//	reg [1:0] mon2 = 3;
+	reg [10:0] mont_1_health = MAX_MONT1_HEALTH;
+    reg [10:0] mont_2_health = MAX_MONT2_HEALTH;
 
 	//state controller
 	reg [2:0] state = 0;
@@ -154,13 +162,61 @@ module vga_test
 	reg[9:0] h, k;
 	reg[18:0] d_sq;
 	reg [11:0] sel_color;
+	reg [9:0] move;
+	reg [1:0] direction;
 	wire H_is_intersected;
 	reg H_rst, H_is_active;
 	hero inw(x - 220, y - 140, clk, H_rst, H_is_active, char, H_is_intersected);
 	wire C_is_intersected;
-	reg C_rst, C_is_active, C2_rst, C2_is_active;
+	reg C_rst, C_is_active, C2_rst, C2_is_active, CX_rst, CX_is_active,CX2_rst, CX2_is_active;
+	
 	circle #(.IX(80), .IY(0)) c(x - 220, y - 140, target_clk[18], C_rst, C_is_active, C_is_intersected);
 	circle #(.IX(200), .IY(100)) c2(x - 220, y - 140, target_clk[18], C2_rst, C2_is_active, C2_is_intersected);
+	circleX #(.IX(80), .IY(0)) cx(x - 220, y - 140, target_clk[18], CX_rst, CX_is_active, CX_is_intersected);
+	circleX #(.IX(180), .IY(220), .STEP_X(0), .STEP_Y(5)) cx2(x - 220, y - 140, target_clk[18], CX2_rst, CX2_is_active, CX2_is_intersected);
+	
+	Pixel_On_Text2 #(.displayText("Nonthanat Theeratanapartkul  6031019821")) t1(
+                clk,
+                200, // text position.x (top left)
+                100, // text position.y (top left)
+                x, // current position.x
+                y, // current position.y
+                res  // result, 1 if current pixel is on text, 0 otherwise
+   );
+   Pixel_On_Text2 #(.displayText("Thanawat Jierawatanakanok    6031020321")) t2(
+                clk,
+                200, // text position.x (top left)
+                150, // text position.y (top left)
+                x, // current position.x
+                y, // current position.y
+                res2  // result, 1 if current pixel is on text, 0 otherwise
+   );
+   Pixel_On_Text2 #(.displayText("Nithipud Tunticharoenviwat   6031032921")) t3(
+                clk,
+                200, // text position.x (top left)
+                200, // text position.y (top left)
+                x, // current position.x
+                y, // current position.y
+                res3  // result, 1 if current pixel is on text, 0 otherwise
+   );
+   Pixel_On_Text2 #(.displayText("Krit Kruaykitanon            6031002021")) t4(
+                clk,
+                200, // text position.x (top left)
+                250, // text position.y (top left)
+                x, // current position.x
+                y, // current position.y
+                res4  // result, 1 if current pixel is on text, 0 otherwise
+   );
+    
+   
+	 
+	// hero_is_alive from hero_blood is lower than MIN_HERO_HEALTH
+	// mont_is_alive use the same logic here
+    reg can_attack = 0;
+    // attack_to : 1 >> attack mont 1, attack_to : 2 >> attack mont 2
+    reg [1:0] attack_to = 0; 
+    reg attack_bar_moving = 0;
+	
     initial begin
         h = 320;
         k = 240;
@@ -170,55 +226,142 @@ module vga_test
         C_is_active = 1;
         C2_rst = 0;
         C2_is_active = 1;
+        CX_rst = 0;
+        CX_is_active = 1;
+        CX2_rst = 0;
+        CX2_is_active = 1;
+        
+        
+        // attack bar
+        move = 1;
+        direction = 1;
+        
     end
 
     always @(posedge clk) begin
 			//start_bee
 
 			//end_bee
-
-
+            
+            
 			//start_taan
+			// Rectangle block in bullet avoiding phase
             if( ((x == 220 || x == 420) && (y >= 140 && y <= 340)) 
             || ((x >= 220 && x <= 420) && (y == 140 || y == 340)) ) begin
                 rgb_reg = 12'b111111111111;
             end
+            // hero blood frame
+            else if( ((x == MIN_HERO_HEALTH-1 || x == MAX_HERO_HEALTH+1) && (y >= 50 && y <= 80)) 
+            || ((x >= MIN_HERO_HEALTH-1 && x <= MAX_HERO_HEALTH+1) && (y == 50 || y == 80)) ) begin
+                rgb_reg = 12'b111111111111;
+            end
+            // Monster 1 blood frame
+            else if( ((x == MIN_MONT1_HEALTH-1 || x == MAX_MONT1_HEALTH+1) && (y >= 400 && y <= 420)) 
+            || ((x >= MIN_MONT1_HEALTH-1 && x <= MAX_MONT1_HEALTH+1) && (y == 400 || y == 420)) ) begin
+                rgb_reg = 12'b111111111111;
+            end
+            // Monster 2 blood frame
+            else if( ((x == MIN_MONT2_HEALTH-1 || x == MAX_MONT2_HEALTH+1) && (y >= 400 && y <= 420)) 
+            || ((x >= MIN_MONT2_HEALTH-1 && x <= MAX_MONT2_HEALTH+1) && (y == 400 || y == 420)) ) begin
+                rgb_reg = 12'b111111111111;
+            end
+            // attack bar frame
+            else if( ((x == 150 || x == 490) && (y >= 350 && y <= 390)) 
+            || ((x >= 150 && x <= 490) && (y == 350 || y == 390)) ) begin
+                rgb_reg = 12'b111111111111;
+            end
+            // attack bar pin go and back in frame 150 and 490
+            else if( (x >= 151+move && x <= 155+move)  && (y >= 351 && y <= 388) ) begin
+                rgb_reg = 12'b111111111111;         
+            end            
             else begin
                 rgb_reg = 12'b000000000000;
             end
+            
+            
+            // hero blood            
+            if( (y >= 51 && y <= 79)
+            && (x >= MIN_HERO_HEALTH && x <= hero_health) ) begin
+                rgb_reg = 12'b111100000000;
+            end
+            // monster 1's blood
+            else if( (y >= 401 && y <= 419) 
+            && (x >= MIN_MONT1_HEALTH && x <= mont_1_health) ) begin
+                rgb_reg = 12'b000000001111;
+            end
+            // monster 2's blood
+            else if( (y >= 401 && y <= 419)
+            && (x >= MIN_MONT2_HEALTH && x <= mont_2_health)) begin
+                rgb_reg = 12'b000011110000;
+            end
+            
+
+
             if(H_is_intersected) begin // Hero
-                rgb_reg = 12'b000011111111;
+                rgb_reg = 12'b111100000000;
             end
             if(C_is_intersected) begin // Circle
-                rgb_reg = 12'b111111111111;
+                rgb_reg = 12'b000000001111;
             end
             if(C2_is_intersected) begin // Circle
-                rgb_reg = 12'b111111111111;
+                rgb_reg = 12'b000000001111;
+            end
+            if(CX_is_intersected) begin // CircleX
+                rgb_reg = 12'b000011110000;
+            end
+            if(CX2_is_intersected) begin // CircleX
+                rgb_reg = 12'b000011110000;
             end
             if(H_is_intersected && C_is_intersected) begin
                 C_is_active = 0;
-                hero = hero - 1;
+                hero_health = hero_health - 50;
             end
             if(H_is_intersected && C2_is_intersected) begin
                 C2_is_active = 0;
-                hero = hero - 1;
+                hero_health = hero_health - 50;
+            end
+            if(H_is_intersected && CX_is_intersected && CX_is_active) begin
+                CX_is_active = 0;
+                hero_health = hero_health - 100;
+            end
+            if(H_is_intersected && CX2_is_intersected && CX2_is_active) begin
+                CX2_is_active = 0;
+                hero_health = hero_health - 100;
             end
             target_clk = target_clk + 1;
 			//end_taan
 
 
 			//start_tee
-
+			// control logic of attack bar
+            if(x == 155 && y==489 && attack_bar_moving) begin 
+                if(direction)begin
+                   move = move+3;
+                end
+                else begin
+                   move = move-3;
+                end
+               if(move > 490 - 150 - 5 && attack_bar_moving) begin
+                  direction = 0;
+                end
+                else if (move < 4) begin
+                  direction = 1;
+                end
+            end
 			//end_tee
 
 
 			//start_pud
-
+			   //guide line attack bar
+               if(x >= 270 && x <= 370 && y <= 393 && y >= 346) begin
+                rgb_reg = 12'b111100000000;
+               end
 			//end_pud
 
-
 			//start_ou
-
+            if(res || res2 || res3 || res4) begin
+                rgb_reg = 12'b111111111111;
+            end
 			//end_ou
 
 //        if( ( (x-h)*(x-h) + (y-k)*(y-k) ) <= 10000) begin
@@ -232,7 +375,51 @@ module vga_test
 	always @(posedge clk) begin
 	    case(char)
 	       8'h00: led[8] = 1;
-	       8'h20: begin led[0] = 1; sel_color = 12'b111111111111; end //SPACE
+	       8'h20: begin 
+	           led[0] = 1; sel_color = 12'b111111111111; 
+	           if (attack_bar_moving && can_attack && attack_to != 0) begin
+	               attack_bar_moving = 0;
+	               if(attack_to == 1) begin
+	                   //100px from center(x=320) area
+	                   if(move+153 >= 270 && move+153 <= 370) begin
+    	               	   mont_1_health = mont_1_health - 100;
+    	               end
+    	               else begin
+    	                   mont_1_health = mont_1_health - 50;
+    	               end
+	               end
+	               else if(attack_to == 2) begin
+	                   //100px from center(x=320) area
+	                   if(move+153 >= 270 && move+153 <= 370) begin
+    	               	   mont_2_health = mont_2_health - 100;
+    	               end
+    	               else begin
+    	                   mont_2_health = mont_2_health - 50;
+    	               end     
+	               end
+	               attack_to = 0;
+	               can_attack = 0;
+	           end
+	           // push space bar again to hit monsteer // test
+//	           else begin attack_bar_moving = 1; end;
+	       end //SPACE
+	       8'h6c: begin // L
+	           // need to check state in attack mode
+	           if(can_attack == 0 && MIN_MONT1_HEALTH+10 <= mont_1_health) begin
+	               can_attack = 1;
+	               attack_to = 1;
+	               attack_bar_moving = 1;
+	               led[1] = 1;
+	           end
+	       end
+	       8'h72: begin // R
+	           if(can_attack == 0 && MIN_MONT2_HEALTH+10 <= mont_2_health) begin
+	               can_attack = 1;
+	               attack_to = 2;
+	               attack_bar_moving = 1;
+	               led[2] = 1;
+	           end
+	       end
 	       8'h6d: begin led[1] = 1; sel_color = 12'b111100001111; end //m
 	       8'h63: begin led[2] = 1; sel_color = 12'b000011111111; end //c
 	       8'h79: begin led[3] = 1; sel_color = 12'b111111110000; end //y
