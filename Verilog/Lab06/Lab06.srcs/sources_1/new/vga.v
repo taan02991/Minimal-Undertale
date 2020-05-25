@@ -175,6 +175,40 @@ module vga_test
 	circleX #(.IX(80), .IY(0)) cx(x - 220, y - 140, target_clk[18], CX_rst, CX_is_active, CX_is_intersected);
 	circleX #(.IX(180), .IY(220), .STEP_X(0), .STEP_Y(5)) cx2(x - 220, y - 140, target_clk[18], CX2_rst, CX2_is_active, CX2_is_intersected);
 	
+	Pixel_On_Text2 #(.displayText("Nonthanat Theeratanapartkul  6031019821")) t1(
+                clk,
+                200, // text position.x (top left)
+                100, // text position.y (top left)
+                x, // current position.x
+                y, // current position.y
+                res  // result, 1 if current pixel is on text, 0 otherwise
+   );
+   Pixel_On_Text2 #(.displayText("Thanawat Jierawatanakanok    6031020321")) t2(
+                clk,
+                200, // text position.x (top left)
+                150, // text position.y (top left)
+                x, // current position.x
+                y, // current position.y
+                res2  // result, 1 if current pixel is on text, 0 otherwise
+   );
+   Pixel_On_Text2 #(.displayText("Nithipud Tunticharoenviwat   6031032921")) t3(
+                clk,
+                200, // text position.x (top left)
+                200, // text position.y (top left)
+                x, // current position.x
+                y, // current position.y
+                res3  // result, 1 if current pixel is on text, 0 otherwise
+   );
+   Pixel_On_Text2 #(.displayText("Krit Kruaykitanon            6031002021")) t4(
+                clk,
+                200, // text position.x (top left)
+                250, // text position.y (top left)
+                x, // current position.x
+                y, // current position.y
+                res4  // result, 1 if current pixel is on text, 0 otherwise
+   );
+    
+   
 	 
 	// hero_is_alive from hero_blood is lower than MIN_HERO_HEALTH
 	// mont_is_alive use the same logic here
@@ -324,9 +358,10 @@ module vga_test
             end
 			//end_pud
 
-
 			//start_ou
-
+            if(res || res2 || res3 || res4) begin
+                rgb_reg = 12'b111111111111;
+            end
 			//end_ou
 
 //        if( ( (x-h)*(x-h) + (y-k)*(y-k) ) <= 10000) begin
