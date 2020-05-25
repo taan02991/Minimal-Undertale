@@ -216,7 +216,9 @@ module vga_test
     // attack_to : 1 >> attack mont 1, attack_to : 2 >> attack mont 2
     reg [1:0] attack_to = 0; 
     reg attack_bar_moving = 0;
-	
+
+    reg [30:0] count = 0;
+
     initial begin
         h = 320;
         k = 240;
@@ -238,6 +240,7 @@ module vga_test
         
     end
 
+    
     always @(posedge clk) begin
 			//start_bee
 
@@ -377,6 +380,11 @@ module vga_test
 	   if( hero_health <= MIN_HERO_HEALTH+10 || (mont_1_health <= MIN_MONT1_HEALTH+10 && mont_2_health <= MIN_MONT2_HEALTH+10) ) begin
 	       state=3;
 	   end
+	   
+	   if(state==1) begin
+	       if(count >= 800000000) state=2;
+	       else count = count + 1;
+	   end
 			
 	    case(char)
 	       8'h00: led[8] = 1;
@@ -397,6 +405,7 @@ module vga_test
 	                       mont_1_health = mont_1_health - 50;
 	                   end
 	                   state = 1;
+	                   count = 0;
 	               end
 	               else if(attack_to == 2 && state == 2) begin
 	                   //100px from center(x=320) area
@@ -407,6 +416,7 @@ module vga_test
 	                       mont_2_health = mont_2_health - 50;
 	                   end
 	                   state = 1;
+	                   count = 0;
 	               end
 	               attack_to = 0;
 	               can_attack = 0;
@@ -435,10 +445,10 @@ module vga_test
 	       8'h6d: begin led[1] = 1; sel_color = 12'b111100001111; end //m
 	       8'h63: begin led[2] = 1; sel_color = 12'b000011111111; end //c
 	       8'h79: begin led[3] = 1; sel_color = 12'b111111110000; end //y
-	       8'h77: begin led[4] = 1; k = k - 1; end//w
-	       8'h73: begin led[5] = 1; k = k + 1; end //s
-	       8'h64: begin led[6] = 1; h = h + 1; end //d
-	       8'h61: begin led[7] = 1; h = h - 1; end //a
+	       8'h77: begin led[4] = 1; k = k - 2; end//w
+	       8'h73: begin led[5] = 1; k = k + 2; end //s
+	       8'h64: begin led[6] = 1; h = h + 2; end //d
+	       8'h61: begin led[7] = 1; h = h - 2; end //a
 	       default: led = 0;
 	    endcase
 	end
