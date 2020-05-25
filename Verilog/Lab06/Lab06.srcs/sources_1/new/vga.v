@@ -145,7 +145,7 @@ module vga_test
     reg [10:0] mont_2_health = MAX_MONT2_HEALTH;
 
 	//state controller
-	reg [2:0] state = 1;
+	reg [2:0] state = 0;
 
 	// register for Basys 2 8-bit RGB DAC
 	reg [11:0] rgb_reg;
@@ -359,7 +359,7 @@ module vga_test
 			//end_pud
 
 			//start_ou
-            if(res || res2 || res3 || res4) begin
+            if( (res || res2 || res3 || res4) && (state==0 || state==3)) begin
                 rgb_reg = 12'b111111111111;
             end
 			//end_ou
@@ -379,29 +379,25 @@ module vga_test
 	           led[0] = 1; sel_color = 12'b111111111111; 
 	           if (attack_bar_moving && can_attack && attack_to != 0) begin
 	               attack_bar_moving = 0;
-	               if(attack_to == 1) begin
-	                   if(state == 2) begin
-	                       //100px from center(x=320) area
-                           if(move+153 >= 270 && move+153 <= 370) begin
-                               mont_1_health = mont_1_health - 100;
-                           end
-                           else begin
-                               mont_1_health = mont_1_health - 50;
-                           end
-                           state = 1;
-    	               end
+	               if(attack_to == 1 && state == 2) begin
+	                   //100px from center(x=320) area
+	                   if(move+153 >= 270 && move+153 <= 370) begin
+	                       mont_1_health = mont_1_health - 100;
+	                   end
+	                   else begin
+	                       mont_1_health = mont_1_health - 50;
+	                   end
+	                   state = 1;
 	               end
-	               else if(attack_to == 2) begin
-	                   if(state ==2) begin
-                           //100px from center(x=320) area
-                           if(move+153 >= 270 && move+153 <= 370) begin
-                               mont_2_health = mont_2_health - 100;
-                           end
-                           else begin
-                               mont_2_health = mont_2_health - 50;
-                           end
-                           state = 1;
-    	               end
+	               else if(attack_to == 2 && state == 2) begin
+	                   //100px from center(x=320) area
+	                   if(move+153 >= 270 && move+153 <= 370) begin
+	                       mont_2_health = mont_2_health - 100;
+	                   end
+	                   else begin
+	                       mont_2_health = mont_2_health - 50;
+	                   end
+	                   state = 1;
 	               end
 	               attack_to = 0;
 	               can_attack = 0;
