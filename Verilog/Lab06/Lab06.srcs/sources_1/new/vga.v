@@ -251,18 +251,18 @@ module vga_test
                 rgb_reg = 12'b111111111111;
             end
             // hero blood frame
-            else if( ((x == MIN_HERO_HEALTH-1 || x == MAX_HERO_HEALTH+1) && (y >= 50 && y <= 80)) 
-            || ((x >= MIN_HERO_HEALTH-1 && x <= MAX_HERO_HEALTH+1) && (y == 50 || y == 80)) ) begin
+            else if( (((x == MIN_HERO_HEALTH-1 || x == MAX_HERO_HEALTH+1) && (y >= 50 && y <= 80)) 
+            || ((x >= MIN_HERO_HEALTH-1 && x <= MAX_HERO_HEALTH+1) && (y == 50 || y == 80))) && (state==1 || state==2) ) begin
                 rgb_reg = 12'b111111111111;
             end
             // Monster 1 blood frame
-            else if( ((x == MIN_MONT1_HEALTH-1 || x == MAX_MONT1_HEALTH+1) && (y >= 400 && y <= 420)) 
-            || ((x >= MIN_MONT1_HEALTH-1 && x <= MAX_MONT1_HEALTH+1) && (y == 400 || y == 420)) ) begin
+            else if( (((x == MIN_MONT1_HEALTH-1 || x == MAX_MONT1_HEALTH+1) && (y >= 400 && y <= 420)) 
+            || ((x >= MIN_MONT1_HEALTH-1 && x <= MAX_MONT1_HEALTH+1) && (y == 400 || y == 420))) && (state==1 || state==2) ) begin
                 rgb_reg = 12'b111111111111;
             end
             // Monster 2 blood frame
-            else if( ((x == MIN_MONT2_HEALTH-1 || x == MAX_MONT2_HEALTH+1) && (y >= 400 && y <= 420)) 
-            || ((x >= MIN_MONT2_HEALTH-1 && x <= MAX_MONT2_HEALTH+1) && (y == 400 || y == 420)) ) begin
+            else if( (((x == MIN_MONT2_HEALTH-1 || x == MAX_MONT2_HEALTH+1) && (y >= 400 && y <= 420)) 
+            || ((x >= MIN_MONT2_HEALTH-1 && x <= MAX_MONT2_HEALTH+1) && (y == 400 || y == 420))) && (state==1 || state==2) ) begin
                 rgb_reg = 12'b111111111111;
             end
             // attack bar frame
@@ -281,17 +281,17 @@ module vga_test
             
             // hero blood            
             if( (y >= 51 && y <= 79)
-            && (x >= MIN_HERO_HEALTH && x <= hero_health) ) begin
+            && (x >= MIN_HERO_HEALTH && x <= hero_health) && (state==1 || state==2) ) begin
                 rgb_reg = 12'b111100000000;
             end
             // monster 1's blood
             else if( (y >= 401 && y <= 419) 
-            && (x >= MIN_MONT1_HEALTH && x <= mont_1_health) ) begin
+            && (x >= MIN_MONT1_HEALTH && x <= mont_1_health) && (state==1 || state==2)) begin
                 rgb_reg = 12'b000000001111;
             end
             // monster 2's blood
             else if( (y >= 401 && y <= 419)
-            && (x >= MIN_MONT2_HEALTH && x <= mont_2_health)) begin
+            && (x >= MIN_MONT2_HEALTH && x <= mont_2_health) && (state==1 || state==2)) begin
                 rgb_reg = 12'b000011110000;
             end
             
