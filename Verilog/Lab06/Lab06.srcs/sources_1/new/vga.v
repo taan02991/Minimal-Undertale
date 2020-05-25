@@ -373,6 +373,11 @@ module vga_test
     end
 
 	always @(posedge clk) begin
+	
+	   if( hero_health <= MIN_HERO_HEALTH+10 || (mont_1_health <= MIN_MONT1_HEALTH+10 && mont_2_health <= MIN_MONT2_HEALTH+10) ) begin
+	       state=3;
+	   end
+			
 	    case(char)
 	       8'h00: led[8] = 1;
 	       8'h20: begin 
