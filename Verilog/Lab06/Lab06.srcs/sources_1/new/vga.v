@@ -242,12 +242,6 @@ module vga_test
 
     
     always @(posedge clk) begin
-			//start_bee
-
-			//end_bee
-            
-            
-			//start_taan
 			// Rectangle block in bullet avoiding phase
             if( (((x == 220 || x == 420) && (y >= 140 && y <= 340)) 
             || ((x >= 220 && x <= 420) && (y == 140 || y == 340))) && state==1 ) begin
@@ -332,10 +326,7 @@ module vga_test
                 hero_health = hero_health - 100;
             end
             target_clk = target_clk + 1;
-			//end_taan
 
-
-			//start_pud
 			if(state==2) begin
 			// control logic of attack bar
             if(x == 155 && y==489 && attack_bar_moving && state==2) begin 
@@ -359,20 +350,10 @@ module vga_test
                end
                
             end
-			//end_pud
 
-			//start_ou
             if( (res || res2 || res3 || res4) && (state==0 || state==3)) begin
                 rgb_reg = 12'b111111111111;
             end
-			//end_ou
-
-//        if( ( (x-h)*(x-h) + (y-k)*(y-k) ) <= 10000) begin
-//            rgb_reg = sel_color;
-//        end
-//        else begin
-//            rgb_reg = 12'b000000000000;
-//        end
     end
 
 	always @(posedge clk) begin
@@ -423,7 +404,6 @@ module vga_test
 	           end
 	           end
 	           // push space bar again to hit monsteer // test
-//	           else begin attack_bar_moving = 1; end;
 	       end //SPACE
 	       8'h6c: begin // L
 	           // need to check state in attack mode
@@ -442,14 +422,6 @@ module vga_test
 	               led[2] = 1;
 	           end
 	       end
-	       8'h6d: begin led[1] = 1; sel_color = 12'b111100001111; end //m
-	       8'h63: begin led[2] = 1; sel_color = 12'b000011111111; end //c
-	       8'h79: begin led[3] = 1; sel_color = 12'b111111110000; end //y
-	       8'h77: begin led[4] = 1; k = k - 2; end//w
-	       8'h73: begin led[5] = 1; k = k + 2; end //s
-	       8'h64: begin led[6] = 1; h = h + 2; end //d
-	       8'h61: begin led[7] = 1; h = h - 2; end //a
-	       default: led = 0;
 	    endcase
 	end
 

@@ -45,8 +45,6 @@ module circleX #(
     reg dir_y = DIR_Y;
     
     assign is_intersected = (((x-h)*(x-h) + (y-k)*(y-k) <= R*R)&& (((x-h)*(x-h) + (y-k)*(y-k) >= (R-3)*(R-3))) && is_active) ? 1 : 0; 
-//    assign is_intersected = (TYPE && ((x-h)*(x-h) + (y-k)*(y-k) >= (R-3)*(R-3))) ? 1 : is_intersected;
-//    assign is_intersected = ()
     always @(posedge clk) begin
         if(rst) begin
             h = IX;
